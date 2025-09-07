@@ -6,8 +6,14 @@ import { Link } from "react-router";
 export default function HeroSection() {
   const { scrollY } = useViewportScroll();
 
+  // Text scroll animation
   const textOpacity = useTransform(scrollY, [0, 300], [1, 0]);
   const textY = useTransform(scrollY, [0, 300], [0, -50]);
+
+  // Van scroll animation (moves left on scroll)
+  const vanScrollX = useTransform(scrollY, [0, 400], [0, 300]);
+  const vanOpacity = useTransform(scrollY, [0, 400], [1, 0.1]);
+  // Starts at 0 (where it finished driving in), moves -150px left as you scroll
 
   return (
     <section className="relative bg-blue-900 text-white overflow-hidden">
@@ -15,9 +21,6 @@ export default function HeroSection() {
         {/* Text */}
         <motion.div
           className="md:w-1/2 space-y-6"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 1.2 }}
           style={{ opacity: textOpacity, y: textY }}
         >
           <h1 className="text-4xl md:text-5xl font-bold leading-tight">
@@ -38,12 +41,13 @@ export default function HeroSection() {
           </div>
         </motion.div>
 
-        {/* Visual - Hidden on Mobile */}
+        {/* Van */}
         <motion.div
           className="md:w-1/2 mt-12 md:mt-0 flex justify-center hidden md:flex"
-          initial={{ opacity: 0, x: 100 }}
-          animate={{ opacity: 1, x: 0 }}
+          initial={{ opacity: 0, x: 100 }} // drives in from right
+          animate={{ opacity: 1, x: 0 }} // mounts at center
           transition={{ duration: 1.2, ease: "easeOut" }}
+          style={{ x: vanScrollX, opacity: vanOpacity }} // scroll-based movement
         >
           <img
             src={transporter}
