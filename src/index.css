@@ -1,1 +1,96 @@
-@import "tailwindcss";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+html {
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+  overflow-x: clip;
+}
+
+body {
+  @apply bg-mist text-slate-body font-sans antialiased;
+  overflow-x: clip;
+}
+
+html[dir='rtl'] body {
+  font-family: 'IBM Plex Sans Arabic', 'Inter', system-ui, sans-serif;
+}
+html[dir='rtl'] .font-display {
+  font-family: 'IBM Plex Sans Arabic', 'Sora', sans-serif;
+}
+html[dir='rtl'] .heading {
+  line-height: 1.35;
+}
+
+::selection {
+  background: #2563eb;
+  color: #fff;
+}
+
+::-webkit-scrollbar {
+  width: 11px;
+}
+::-webkit-scrollbar-track {
+  background: #eef1f6;
+}
+::-webkit-scrollbar-thumb {
+  background: #c3ccda;
+  border-radius: 6px;
+  border: 2px solid #eef1f6;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #2563eb;
+}
+
+@layer components {
+  .container-x {
+    @apply mx-auto w-full max-w-content px-5 sm:px-8;
+  }
+  .eyebrow {
+    @apply inline-flex items-center gap-2 text-xs font-bold uppercase tracking-[0.2em] text-route-500;
+  }
+  .heading {
+    @apply font-display font-bold leading-[1.02] tracking-tight text-ink;
+  }
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-full px-6 py-3.5 text-sm font-semibold tracking-wide transition-all duration-200 focus:outline-none focus-visible:ring-2 focus-visible:ring-route-500 focus-visible:ring-offset-2;
+  }
+  .btn-primary {
+    @apply btn bg-route-500 text-white hover:bg-route-600 hover:shadow-lift;
+  }
+  .btn-dark {
+    @apply btn bg-navy-500 text-white hover:bg-navy-800;
+  }
+  .btn-ghost {
+    @apply btn border border-line bg-white text-ink hover:border-route-400 hover:text-route-600;
+  }
+  .btn-ghost-dark {
+    @apply btn border border-white/25 bg-white/5 text-white hover:border-white/60 hover:bg-white/10;
+  }
+  .card {
+    @apply relative overflow-hidden rounded-2xl border border-line bg-white shadow-card;
+  }
+}
+
+.text-gradient-navy {
+  background: linear-gradient(120deg, #0f1a2e 0%, #35507a 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.hero-grid {
+  background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 44px 44px;
+}
+
+.mask-fade-x {
+  -webkit-mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+  mask-image: linear-gradient(to right, transparent, #000 10%, #000 90%, transparent);
+}

@@ -1,69 +1,48 @@
-# React + TypeScript + Vite
+# EAVANT Handels GmbH — Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, multilingual website for **EAVANT Handels GmbH** (Transport, Kurier &
+Ressourcenmanagement, Wien), built from scratch with **React + Vite + TailwindCSS**.
 
-Currently, two official plugins are available:
+## Highlights
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- **4 languages** — Deutsch (default), English, Italiano, العربية — with full
+  **right-to-left (RTL)** support for Arabic. Language choice is remembered in the browser.
+- **Premium logistics design** — deep navy brand palette (from the logo) with an electric
+  route-blue accent, animated route lines and a Europe coverage-network map.
+- **Two divisions** highlighted: Transport & Logistik and Entsorgung & Ressourcenmanagement.
+- Animated, responsive, accessible; legal pages (Impressum, Datenschutz) included.
+- Contact form wired to the existing `formsubmit.co/office@eavant.at` endpoint.
 
-## Expanding the ESLint configuration
+## Getting started
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
-
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
-
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+```bash
+npm install
+npm run dev        # local dev server (http://localhost:5173)
+npm run build      # production build -> dist/
+npm run preview    # preview the production build
+npm run build:single   # single self-contained index.html -> dist-single/
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+## Structure
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
-
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
 ```
+public/            favicon, og-image
+src/
+  i18n/            translations.js (DE/EN/IT/AR) + LanguageContext (RTL)
+  components/      Nav, Hero, Services, Coverage, Process, Why, About, CTA, Footer
+  pages/           Home, Impressum, Datenschutz
+  assets/media/    logo variants + van (real brand assets)
+```
+
+All visible text lives in `src/i18n/translations.js`. Contact details are in the `CONTACT`
+object there; coverage hubs in `HUBS`; services in `SERVICE_KEYS` / `SERVICE_META`.
+
+## Notes for the owner
+
+- **Address:** the site uses **Frauenstiftgasse 12A/6, 1210 Wien** (per the business
+  registry). The previous site's Impressum listed a different address that appeared to be a
+  copy-paste error — please confirm the correct one.
+- **UID-Nr.:** intentionally left out of the Impressum because no valid value was available.
+  Please add your real ATU number in `src/pages/Impressum.jsx`.
+- Deployment: `npm run build` outputs a static `dist/` (hash routing — no server rewrites
+  needed). Works on GitHub Pages, Cloudflare Pages, Netlify, etc. Keep the `CNAME` (eavant.at).
