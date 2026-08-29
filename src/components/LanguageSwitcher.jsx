@@ -1,25 +1,25 @@
-import { useEffect, useRef, useState } from 'react'
-import { useI18n } from '../i18n/LanguageContext'
+import { useEffect, useRef, useState } from "react";
+import { useI18n } from "../i18n/LanguageContext";
 
 export default function LanguageSwitcher({ dark = false }) {
-  const { lang, setLang, langs } = useI18n()
-  const [open, setOpen] = useState(false)
-  const ref = useRef(null)
-  const current = langs.find((l) => l.code === lang)
+  const { lang, setLang, langs } = useI18n();
+  const [open, setOpen] = useState(false);
+  const ref = useRef(null);
+  const current = langs.find((l) => l.code === lang);
 
   useEffect(() => {
     const onClick = (e) => {
-      if (ref.current && !ref.current.contains(e.target)) setOpen(false)
-    }
-    document.addEventListener('mousedown', onClick)
-    return () => document.removeEventListener('mousedown', onClick)
-  }, [])
+      if (ref.current && !ref.current.contains(e.target)) setOpen(false);
+    };
+    document.addEventListener("mousedown", onClick);
+    return () => document.removeEventListener("mousedown", onClick);
+  }, []);
 
   const trigger = dark
-    ? 'border-white/25 text-white hover:border-white/70'
-    : 'border-line bg-white text-ink hover:border-route-400 hover:text-route-600'
+    ? "border-white/25 text-white hover:border-white/70"
+    : "border-line bg-white text-ink hover:border-route-400 hover:text-route-600";
 
-  return (
+  return; /*(
     <div className="relative" ref={ref}>
       <button
         type="button"
@@ -62,5 +62,5 @@ export default function LanguageSwitcher({ dark = false }) {
         </ul>
       )}
     </div>
-  )
+  )*/
 }
