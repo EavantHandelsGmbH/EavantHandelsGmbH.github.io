@@ -20,4 +20,4 @@ main(){
     upload $1
 }
 
-main $1
+main @q
